@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function main {
-  source ../venv/bin/activate
-  exec python "$@"
+  exec /tini -- /usr/local/bin/cloudflared --no-autoupdate
+  return $?
 }
 
 main "$@"
