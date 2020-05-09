@@ -63,13 +63,13 @@ steps:
 - name: kaniko
   image: letfn/drone-kaniko
   settings:
-    args: --destination=letfn/python
+    args: --destination=letfn/cloudflared
     cache: true
     cache_repo: defn/cache
-    dockerfile: alt/Dockerfile
+    dockerfile: Dockerfile
     password:
       from_secret: docker_password
-    repo: letfn/python
+    repo: letfn/cloudflared
     skip_tls_verify: true
     tag: latest
     username:
