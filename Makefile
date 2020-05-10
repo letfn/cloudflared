@@ -3,7 +3,7 @@ SHELL := /bin/bash
 .PHONY: docs
 
 menu:
-	@perl -ne 'printf("%10s: %s\n","$$1","$$2") if m{^([\w+-]+):[^#]+#\s(.+)$$}' Makefile | sort -b
+	@perl -ne 'printf("%10s: %s\n","$$1","$$2") if m{^([\w+-]+):[^#]+#\s(.+)$$}' Makefile
 
 all: # Run everything except build
 	$(MAKE) fmt
