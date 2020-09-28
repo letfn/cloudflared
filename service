@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function main {
-  exec /tini -- /usr/local/bin/cloudflared --no-autoupdate
+  exec /usr/local/bin/cloudflared --no-autoupdate
   return $?
 }
 
