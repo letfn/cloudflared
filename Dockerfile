@@ -1,6 +1,6 @@
 FROM letfn/container AS download
 
-ARG _CLOUDFLARED_VERSION=2020.9.3
+ARG _CLOUDFLARED_VERSION=2020.11.11
 
 WORKDIR /tmp
 
@@ -9,10 +9,7 @@ RUN curl -sSL -O https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-v${_CLOUDFLARED
     && rm -f cloudflared-v${_CLOUDFLARED_VERSION}-linux-amd64.tgz \
     && chmod 755 cloudflared
 
-FROM letfn/python
-
-COPY --chown=app:app requirements.txt /app/src/
-RUN . /app/venv/bin/activate && pip install --no-cache-dir -r /app/src/requirements.txt
+FROM defn/python
 
 COPY --from=download /tmp/cloudflared /usr/local/bin/cloudflared
 
