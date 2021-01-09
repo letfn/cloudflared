@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 function main {
-  exec /usr/local/bin/cloudflared "$@"
-  return $?
+  exec /usr/local/bin/cloudflared --no-autoupdate "$@"
 }
 
 main "$@"
