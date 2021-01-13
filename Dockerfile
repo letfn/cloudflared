@@ -1,17 +1,11 @@
-FROM letfn/container AS download
-
-ARG _CLOUDFLARED_VERSION=2020.11.11
-
-WORKDIR /tmp
-
-RUN curl -sSL -O https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-v${_CLOUDFLARED_VERSION}-linux-amd64.tgz \
-    && tar xvfz cloudflared-v${_CLOUDFLARED_VERSION}-linux-amd64.tgz \
-    && rm -f cloudflared-v${_CLOUDFLARED_VERSION}-linux-amd64.tgz \
-    && chmod 755 cloudflared
 
 FROM defn/python
 
-COPY --from=download /tmp/cloudflared /usr/local/bin/cloudflared
+ARG _CLOUDFLARED_VERSION=2020.11.11
+
+RUN curl -sSL https://pkg.cloudflare.com/pubkey.gpg | sudo apt-key add -
+RUN echo 'deb http://pkg.cloudflare.com/ focal main' | sudo tee /etc/apt/sources.list.d/cloudflare-main.list
+RUN sudo apt-get update && sudo apt-get install -y cloudflared=${_CLOUDFLARED_VERSION}
 
 COPY service /service
 
