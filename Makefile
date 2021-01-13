@@ -4,7 +4,7 @@ menu:
 	@perl -ne 'printf("%10s: %s\n","$$1","$$2") if m{^([\w+-]+):[^#]+#\s(.+)$$}' Makefile
 
 build: # Build defn/cloudflared
-	docker build -t defn/cloudflared .
+	docker build -t defn/cloudflared $(build) .
 
 push: # Push defn/cloudflared
 	docker push defn/cloudflared
